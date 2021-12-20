@@ -21,7 +21,7 @@ const initialize = async () =>
 		break
 
 	case "すしすきー":
-		config.set("instance", "https://sushi.ski")
+		config.set("instance", "wss://sushi.ski")
 		break
 
 	case "その他": {
@@ -39,7 +39,7 @@ const initialize = async () =>
 	}
 
 	const { token } = await inquirer.prompt({
-		message: `アクセストークンを入力してください。トークンは ${config.get("instance")}/settings/api から発行できます。`,
+		message: `アクセストークンを入力してください。トークンは Misskey > 設定 > API > アクセストークンの発行 から発行できます。`,
 		name: "token",
 		type: "password",
 	})
