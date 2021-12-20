@@ -54,7 +54,7 @@ const initialize = async () =>
 
 	const { method } = await inquirer.prompt({
 		choices: ["デスクトップ通知"],
-		message: "通知するメソッドを選択してください。",
+		message: "通知方法を選択してください。",
 		name: "method",
 		type: "list",
 	})
