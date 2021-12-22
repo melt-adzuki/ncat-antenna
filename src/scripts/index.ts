@@ -14,11 +14,11 @@ interface StreamResponse {
 
 export default class NcatAntenna extends EventEmitter
 {
-	constructor(config: { webSocketUrl: string, token: string, antennaId: string })
+	constructor({ webSocketUrl, token, antennaId }: { webSocketUrl: string, token: string, antennaId: string })
 	{
 		super()
 
-		const stream = new WebSocket(`${config.webSocketUrl}/streaming?i=${config.token}`)
+		const stream = new WebSocket(`${webSocketUrl}/streaming?i=${token}`)
 		const id = v4()
 
 		stream.on("open", () =>
@@ -29,9 +29,7 @@ export default class NcatAntenna extends EventEmitter
 				body: {
 					channel: "antenna",
 					id,
-					params: {
-						antennaId: config.antennaId,
-					},
+					params: { antennaId },
 				},
 				type: "connect",
 			}))
