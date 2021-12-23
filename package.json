@@ -1,5 +1,7 @@
 {
   "name": "ncat-antenna",
+  "description": "Misskeyでアンテナを受信したときに通知を表示させよう。",
+  "keywords": ["misskey"],
   "author": "melt_adzuki",
   "license": "MIT",
   "version": "1.0.0",
