@@ -18,7 +18,8 @@
     "inquirer": "^8.2.0",
     "node-notifier": "^10.0.0",
     "uuid": "^8.3.2",
-    "ws": "^8.3.0"
+    "ws": "^8.3.0",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@types/inquirer": "^8.1.3",

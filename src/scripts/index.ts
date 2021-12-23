@@ -1,16 +1,8 @@
 import Debug from "./debug"
 import { EventEmitter } from "events"
+import { Response } from "../schemas/stream"
 import WebSocket from "ws"
 import { v4 } from "uuid"
-
-interface StreamResponse {
-	type: "channel"
-	body: {
-		id: string
-		type: "note"
-		body: Note
-	}
-}
 
 export default class NcatAntenna extends EventEmitter
 {
@@ -39,14 +31,21 @@ export default class NcatAntenna extends EventEmitter
 		{
 			try
 			{
-				const data = JSON.parse(response.toString()) as StreamResponse // Unsafe assertion
-				const note = data.body.body
+				const data = Response.safeParse(JSON.parse(response.toString()))
 
-				this.emit("recieve", note)
+				if (data.success)
+				{
+					const note = data.data.body.body
+					this.emit("recieve", note)
+				}
+				else
+				{
+					Debug.log("warning", `レスポンスのバリデーションに失敗しました。詳細: ${data.error}`)
+				}
 			}
 			catch (error)
 			{
-				Debug.log("warning", `レスポンスの解析に失敗しました。詳細: ${error}`)
+				Debug.log("error", `レスポンスの解析に失敗しました。詳細: ${error}`)
 			}
 		})
 	}
