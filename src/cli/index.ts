@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as Debug from "../scripts/debug"
 import * as notifiers from "./notifiers"
 import Conf from "conf"
