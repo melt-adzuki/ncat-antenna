@@ -1,6 +1,6 @@
 import Debug from "./debug"
 import { EventEmitter } from "events"
-import { Response } from "../schemas/stream"
+import { Response } from "./schemas/stream"
 import WebSocket from "ws"
 import { v4 } from "uuid"
 
