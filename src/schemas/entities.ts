@@ -7,17 +7,17 @@ export const Emoji: z.ZodSchema<Emoji> = z.object({
 })
 
 export const Instance: z.ZodSchema<Instance> = z.object({
-	name: z.string(),
+	name: z.string().nullable(),
 	softwareName: z.string().nullable(),
 	softwareVersion: z.string().nullable(),
-	iconUrl: z.string(),
-	faviconUrl: z.string(),
+	iconUrl: z.string().url().nullable(),
+	faviconUrl: z.string().url().nullable(),
 	themeColor: z.string().nullable().nullable(),
 })
 
 export const User: z.ZodSchema<User> = z.object({
 	id: z.string(),
-	name: z.string(),
+	name: z.string().nullable(),
 	username: z.string(),
 	host: z.string().nullable(),
 	avatarUrl: z.string(),
@@ -43,7 +43,7 @@ export const File: z.ZodSchema<MisskeyFile> = z.object({
 		height: z.number().optional(),
 	}),
 	url: z.string().url(),
-	thumbnailUrl: z.string().url(),
+	thumbnailUrl: z.string().url().nullable(),
 	comment: z.unknown().nullable(), // FIXME
 	folderId: z.string().nullable(),
 	folder: z.unknown().nullable(), // FIXME

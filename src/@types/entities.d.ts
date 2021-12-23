@@ -23,7 +23,7 @@ interface Note {
 
 interface User {
     id: string
-    name: string
+    name: string | null
     username: string
     host: string | null
     avatarUrl: string
@@ -36,11 +36,11 @@ interface User {
 }
 
 interface Instance {
-    name: string
+    name: string | null
     softwareName: string | null
     softwareVersion: string | null
-    iconUrl: string
-    faviconUrl: string
+    iconUrl: string | null
+    faviconUrl: string | null
     themeColor: string | null
 }
 
@@ -63,7 +63,7 @@ interface MisskeyFile {
         height?: number
     }
     url: string
-    thumbnailUrl: string
+    thumbnailUrl: string | null
     comment?: unknown | null // FIXME
     folderId: string | null
     folder?: unknown | null // FIXME
