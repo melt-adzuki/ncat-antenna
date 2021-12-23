@@ -27,21 +27,21 @@ interface User {
     username: string
     host: string | null
     avatarUrl: string
-    avatarBlurhash: string
+    avatarBlurhash: string | null
     avatarColor: string | null
-    isCat: boolean
-    instance: Instance
+    isCat?: boolean
+    instance?: Instance
     emojis: Emoji[]
     onlineStatus: "online" | "active" | "offline" | "unknown"
 }
 
 interface Instance {
     name: string
-    softwareName: string
-    softwareVersion: string
+    softwareName: string | null
+    softwareVersion: string | null
     iconUrl: string
     faviconUrl: string
-    themeColor: string
+    themeColor: string | null
 }
 
 interface Emoji {
@@ -57,16 +57,16 @@ interface MisskeyFile {
     md5: string
     size: number
     isSensitive: boolean
-    blurhash: string
+    blurhash: string | null
     properties: {
-        width: number
-        height: number
+        width?: number
+        height?: number
     }
     url: string
     thumbnailUrl: string
-    comment: unknown | null // FIXME
+    comment?: unknown | null // FIXME
     folderId: string | null
-    folder: unknown | null // FIXME
+    folder?: unknown | null // FIXME
     userId: string | null
     user: User | null
 }
