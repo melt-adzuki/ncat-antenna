@@ -3,8 +3,8 @@ interface Note {
     createdAt: string
     userId: string
     user: User
-    text?: string
-    cw?: string
+    text: string | null
+    cw: string | null
     visibility: "public" | "home" | "followers" | "specified"
     renoteCount: number
     repliesCount: number
@@ -12,23 +12,23 @@ interface Note {
     emojis: Emoji[]
     fileIds: string[]
     files: File[]
-    replyId?: string
-    renoteId?: string
+    replyId: string | null
+    renoteId: string | null
     renote?: Note
     mentions?: string[]
     uri?: string
     reply?: Note
-    myReaction: string
+    myReaction?: string
 }
 
 interface User {
     id: string
     name: string
     username: string
-    host?: string
+    host: string | null
     avatarUrl: string
     avatarBlurhash: string
-    avatarColor: string
+    avatarColor: string | null
     isCat: boolean
     instance: Instance
     emojis: Emoji[]
@@ -39,9 +39,9 @@ interface Instance {
     name: string
     softwareName: string
     softwareVersion: string
-    iconUrl?: string
-    faviconUrl?: string
-    themeColor?: string
+    iconUrl: string
+    faviconUrl: string
+    themeColor: string
 }
 
 interface Emoji {
@@ -57,16 +57,16 @@ interface File {
     md5: string
     size: number
     isSensitive: boolean
-    blurhash?: string
+    blurhash: string
     properties: {
         width: number
         height: number
     }
     url: string
     thumbnailUrl: string
-    comment?: unknown // FIXME
-    folderId?: string
-    folder?: unknown // FIXME
-    userId?: string
-    user?: User
+    comment: unknown | null // FIXME
+    folderId: string | null
+    folder: unknown | null // FIXME
+    userId: string | null
+    user: User | null
 }
