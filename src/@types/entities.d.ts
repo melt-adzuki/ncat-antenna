@@ -11,7 +11,7 @@ interface Note {
     reactions: Record<string, number>
     emojis: Emoji[]
     fileIds: string[]
-    files: File[]
+    files: MisskeyFile[]
     replyId: string | null
     renoteId: string | null
     renote?: Note
@@ -49,7 +49,7 @@ interface Emoji {
     url: string
 }
 
-interface File {
+interface MisskeyFile {
     id: string
     createdAt: string
     name: string
