@@ -7,30 +7,30 @@ const initialize = async () =>
 	const config = new Conf()
 	config.clear()
 
-	const { instance } = await inquirer.prompt({
+	const { webSocketUrl } = await inquirer.prompt({
 		choices: ["Misskey.io", "すしすきー", "その他"],
 		message: "使用しているインスタンスを選択してください。",
-		name: "instance",
+		name: "webSocketUrl",
 		type: "list",
 	})
 
-	switch (instance)
+	switch (webSocketUrl)
 	{
 	case "Misskey.io":
-		config.set("instance", "wss://misskey.io")
+		config.set("webSocketUrl", "wss://misskey.io")
 		break
 
 	case "すしすきー":
-		config.set("instance", "wss://sushi.ski")
+		config.set("webSocketUrl", "wss://sushi.ski")
 		break
 
 	case "その他": {
-		const { instanceUrl } = await inquirer.prompt({
+		const { customWebSocketUrl } = await inquirer.prompt({
 			message: "使用しているインスタンスのWebSocketのURLを入力してください。",
-			name: "instanceUrl",
+			name: "customWebSocketUrl",
 			type: "input",
 		})
-		config.set("instance", instanceUrl)
+		config.set("webSocketUrl", customWebSocketUrl)
 		break
 	}
 
@@ -52,13 +52,13 @@ const initialize = async () =>
 	})
 	config.set("antennaId", antennaId)
 
-	const { method } = await inquirer.prompt({
+	const { notifier } = await inquirer.prompt({
 		choices: ["デスクトップ通知"],
 		message: "通知方法を選択してください。",
-		name: "method",
+		name: "notifier",
 		type: "list",
 	})
-	config.set("method", method)
+	config.set("notifier", notifier)
 
 	console.log("設定が完了しました。")
 }

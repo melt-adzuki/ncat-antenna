@@ -3,6 +3,7 @@ import * as notifiers from "./notifiers"
 import Conf from "conf"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
+import migrations from "./migrations"
 
 (async () =>
 {
@@ -20,9 +21,9 @@ import initialize from "./init"
 		break
 	}
 
-	const config = new Conf()
+	const config = new Conf({ migrations })
 
-	const webSocketUrl = config.get("instance") as string
+	const webSocketUrl = config.get("webSocketUrl") as string
 	const token = config.get("token") as string
 	const antennaId = config.get("antennaId") as string
 
@@ -36,7 +37,7 @@ import initialize from "./init"
 
 		Debug.log("recieve", `${title}: ${text}`)
 
-		switch (config.get("method"))
+		switch (config.get("notifier"))
 		{
 		case "デスクトップ通知":
 			notifiers.nodeNotifier({ text, title })
