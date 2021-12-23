@@ -1,6 +1,6 @@
+import * as Debug from "../scripts/debug"
 import * as notifiers from "./notifiers"
 import Conf from "conf"
-import Debug from "../scripts/debug"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
 
