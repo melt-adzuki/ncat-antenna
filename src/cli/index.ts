@@ -6,6 +6,7 @@ import Conf from "conf"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
 import migrations from "./migrations"
+import { z } from "zod"
 
 (async () =>
 {
@@ -25,9 +26,9 @@ import migrations from "./migrations"
 
 	const config = new Conf({ migrations })
 
-	const webSocketUrl = config.get("webSocketUrl") as string
-	const token = config.get("token") as string
-	const antennaId = config.get("antennaId") as string
+	const webSocketUrl = z.string().parse(config.get("webSocketUrl"))
+	const token = z.string().parse(config.get("token"))
+	const antennaId = z.string().parse(config.get("antennaId"))
 
 	const ncatAntenna = new NcatAntenna({ antennaId, token, webSocketUrl })
 
