@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
 import * as Debug from "../scripts/debug"
-import * as notifiers from "./notifiers"
 import Conf from "conf"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
 import migrations from "./migrations"
+import notify from "./notifier"
 import { z } from "zod"
 
 (async () =>
@@ -40,14 +40,6 @@ import { z } from "zod"
 
 		Debug.log("recieve", `${title}: ${text}`)
 
-		switch (config.get("notifier"))
-		{
-		case "デスクトップ通知":
-			notifiers.nodeNotifier({ text, title })
-			break
-
-		default:
-			throw new Error("設定ファイルの値を正しく解析できませんでした。")
-		}
+		notify({ text, title })
 	})
 })()
