@@ -16,7 +16,7 @@
     "start": "ts-node --files src/cli",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore . --fix",
     "build": "tsc",
-    "publish": "tsc && npm version patch && npm publish"
+    "prepublishOnly": "yarn run build"
   },
   "dependencies": {
     "conf": "^10.1.1",
