@@ -35,7 +35,7 @@ import { z } from "zod"
 	ncatAntenna.on("recieve", (note: Note) =>
 	{
 		const isRenote = Boolean(note.renote)
-		const title = `${isRenote ? "🔁 " : ""}${note.user.username}`
+		const title = `${isRenote ? "🔁 " : ""}${note.user.name || note.user.username}`
 		const text = (isRenote ? note.renote?.text : note.text) || ""
 
 		Debug.log("recieve", `${title}: ${text}`)
