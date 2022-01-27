@@ -14,8 +14,9 @@
   },
   "scripts": {
     "start": "ts-node --files src/cli",
+    "lint": "eslint --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore . --fix",
     "build": "tsc",
-    "lint": "eslint --ext .js,.ts,.jsx,.tsx --ignore-path .gitignore . --fix"
+    "publish": "tsc && npm version patch && npm publish"
   },
   "dependencies": {
     "conf": "^10.1.1",
