@@ -14,6 +14,6 @@ export class Logger
 
 	public fire(type: LogType, message: string): void
 	{
-		console.log(`${prefixes[type]} ${this.from}:  ${message}`)
+		console.log(`${prefixes[type]} ${this.from}: ${message}`)
 	}
 }
