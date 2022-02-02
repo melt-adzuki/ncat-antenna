@@ -1,19 +1,29 @@
 import Conf from "conf"
-import nodeNotifier from "./node-notifier"
+import Discord from "./discord"
+import NodeNotifier from "./node-notifier"
+import { z } from "zod"
 
-const config = new Conf()
+export const notifierNameList = ["デスクトップ通知"] as const
 
-const notify = ({ text, title }: NotifierData) =>
+export const notify = (title: string, text: string) =>
 {
-	switch (config.get("notifier"))
-	{
-	case "デスクトップ通知":
-		nodeNotifier({ text, title })
-		break
+	const config = new Conf()
 
-	default:
-		throw new Error("設定ファイルの値を正しく解析できませんでした。")
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const notifiers: { [K in typeof notifierNameList[number] ]: any} = {
+		デスクトップ通知: NodeNotifier,
 	}
+
+	const currentNotifierName = z.enum(notifierNameList).parse(config.get("notifier"))
+
+	const notifier = new notifiers[currentNotifierName](title, text)
+	notifier.notify()
 }
 
-export default notify
+export abstract class Notifier
+{
+	protected abstract title: string
+	protected abstract text: string
+
+	public abstract notify(): void
+}

@@ -1,11 +1,21 @@
+import { Notifier } from "."
 import notifier from "node-notifier"
 
-const nodeNotifier: Notifier = ({ title, text }: NotifierData) =>
+export default class NodeNotifier extends Notifier
 {
-	notifier.notify({
-		message: text,
-		title,
-	})
-}
+	constructor(
+		protected readonly title: string,
+		protected readonly text: string,
+	)
+	{
+		super()
+	}
 
-export default nodeNotifier
+	notify()
+	{
+		notifier.notify({
+			message: this.text,
+			title: this.title,
+		})
+	}
+}

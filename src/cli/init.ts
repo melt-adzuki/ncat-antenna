@@ -53,7 +53,7 @@ const initialize = async () =>
 	config.set("antennaId", antennaId)
 
 	const { notifier } = await inquirer.prompt({
-		choices: ["デスクトップ通知"],
+		choices: notifierNameList,
 		message: "通知方法を選択してください。",
 		name: "notifier",
 		type: "list",

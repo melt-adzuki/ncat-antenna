@@ -5,7 +5,7 @@ import { Logger } from "../scripts/debug"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
 import migrations from "./migrations"
-import notify from "./notifier"
+import { notify } from "./notifier"
 import { z } from "zod"
 
 (async () =>
@@ -41,6 +41,6 @@ import { z } from "zod"
 
 		logger.fire("recieve", `${title}: ${text}`)
 
-		notify({ text, title })
+		notify(text, title)
 	})
 })()
