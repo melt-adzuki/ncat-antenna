@@ -1,5 +1,5 @@
-import * as Debug from "./debug"
 import { EventEmitter } from "events"
+import { Logger } from "./debug"
 import { Response } from "./schemas/stream"
 import WebSocket from "ws"
 import { v4 } from "uuid"
@@ -10,12 +10,13 @@ export default class NcatAntenna extends EventEmitter
 	{
 		super()
 
+		const logger = new Logger("Server")
 		const stream = new WebSocket(`${webSocketUrl}/streaming?i=${token}`)
 		const id = v4()
 
 		stream.on("open", () =>
 		{
-			Debug.log("info", "ストリーミングサーバーとの接続が正常に確立されました。")
+			logger.fire("info", "ストリーミングサーバーとの接続が正常に確立されました。")
 
 			stream.send(JSON.stringify({
 				body: {
@@ -40,12 +41,12 @@ export default class NcatAntenna extends EventEmitter
 				}
 				else
 				{
-					Debug.log("warning", `レスポンスのバリデーションに失敗しました。詳細: ${data.error}`)
+					logger.fire("warning", `レスポンスのバリデーションに失敗しました。詳細: ${data.error}`)
 				}
 			}
 			catch (error)
 			{
-				Debug.log("error", `レスポンスの解析に失敗しました。詳細: ${error}`)
+				logger.fire("error", `レスポンスの解析に失敗しました。詳細: ${error}`)
 			}
 		})
 	}

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import * as Debug from "../scripts/debug"
 import Conf from "conf"
+import { Logger } from "../scripts/debug"
 import NcatAntenna from "../scripts"
 import initialize from "./init"
 import migrations from "./migrations"
@@ -31,6 +31,7 @@ import { z } from "zod"
 	const antennaId = z.string().parse(config.get("antennaId"))
 
 	const ncatAntenna = new NcatAntenna({ antennaId, token, webSocketUrl })
+	const logger = new Logger("Client")
 
 	ncatAntenna.on("recieve", (note: Note) =>
 	{
@@ -38,7 +39,7 @@ import { z } from "zod"
 		const title = `${isRenote ? "🔁 " : ""}${note.user.name || note.user.username}`
 		const text = (isRenote ? note.renote?.text : note.text) || ""
 
-		Debug.log("recieve", `${title}: ${text}`)
+		logger.fire("recieve", `${title}: ${text}`)
 
 		notify({ text, title })
 	})

@@ -5,9 +5,15 @@ const prefixes = {
 	warning: "[警告]",
 } as const
 
-type logType = keyof typeof prefixes
+type LogType = keyof typeof prefixes
 
-export const log = (type: logType, message: string): void =>
+export class Logger
 {
-	console.log(`${prefixes[type]} ${message}`)
+	constructor(private from: string)
+	{ }
+
+	public fire(type: LogType, message: string): void
+	{
+		console.log(`${prefixes[type]}${this.from ? ` ${this.from}: ` : ""} ${message}`)
+	}
 }
