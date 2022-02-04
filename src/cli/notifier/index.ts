@@ -1,11 +1,10 @@
 import Conf from "conf"
-import Discord from "./discord"
-import NodeNotifier from "./node-notifier"
+import Discord from "./modules/discord"
+import NodeNotifier from "./modules/node-notifier"
+import notifierNameList from "./name-list"
 import { z } from "zod"
 
-export const notifierNameList = ["デスクトップ通知"] as const
-
-export const notify = (title: string, text: string) =>
+const notify = (title: string, text: string) =>
 {
 	const config = new Conf()
 
@@ -20,16 +19,4 @@ export const notify = (title: string, text: string) =>
 	notifier.fire()
 }
 
-export abstract class Notifier
-{
-	protected title: string
-	protected text: string
-
-	constructor(title: string, text: string)
-	{
-		this.title = title
-		this.text = text
-	}
-
-	public abstract fire(): void
-}
+export default notify

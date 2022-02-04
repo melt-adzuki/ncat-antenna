@@ -1,7 +1,7 @@
-import { Notifier } from "."
+import Module from "."
 import notifier from "node-notifier"
 
-export default class NodeNotifier extends Notifier
+export default class NodeNotifier extends Module
 {
 	constructor(title: string, text: string)
 	{

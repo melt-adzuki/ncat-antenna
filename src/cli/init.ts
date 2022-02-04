@@ -1,6 +1,6 @@
 import Conf from "conf"
 import inquirer from "inquirer"
-import { notifierNameList } from "./notifier"
+import notifierNameList from "./notifier/name-list"
 
 // eslint-disable-next-line max-statements, max-lines-per-function
 const initialize = async () =>
