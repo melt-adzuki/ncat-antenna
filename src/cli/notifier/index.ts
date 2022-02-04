@@ -17,7 +17,7 @@ export const notify = (title: string, text: string) =>
 	const currentNotifierName = z.enum(notifierNameList).parse(config.get("notifier"))
 
 	const notifier = new notifiers[currentNotifierName](title, text)
-	notifier.notify()
+	notifier.fire()
 }
 
 export abstract class Notifier
@@ -31,5 +31,5 @@ export abstract class Notifier
 		this.text = text
 	}
 
-	public abstract notify(): void
+	public abstract fire(): void
 }

@@ -8,7 +8,7 @@ export default class NodeNotifier extends Notifier
 		super(title, text)
 	}
 
-	notify()
+	fire()
 	{
 		notifier.notify({
 			message: this.text,
