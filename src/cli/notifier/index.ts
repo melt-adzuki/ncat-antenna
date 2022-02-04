@@ -12,7 +12,7 @@ export const notify = (title: string, text: string) =>
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const notifiers: { [K in typeof notifierNameList[number] ]: any} = {
 		デスクトップ通知: NodeNotifier,
-	}
+	} as const
 
 	const currentNotifierName = z.enum(notifierNameList).parse(config.get("notifier"))
 
