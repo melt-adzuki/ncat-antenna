@@ -3,12 +3,9 @@ import notifier from "node-notifier"
 
 export default class NodeNotifier extends Notifier
 {
-	constructor(
-		protected readonly title: string,
-		protected readonly text: string,
-	)
+	constructor(title: string, text: string)
 	{
-		super()
+		super(title, text)
 	}
 
 	notify()

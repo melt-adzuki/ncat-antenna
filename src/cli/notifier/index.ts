@@ -22,8 +22,14 @@ export const notify = (title: string, text: string) =>
 
 export abstract class Notifier
 {
-	protected abstract title: string
-	protected abstract text: string
+	protected title: string
+	protected text: string
+
+	constructor(title: string, text: string)
+	{
+		this.title = title
+		this.text = text
+	}
 
 	public abstract notify(): void
 }
